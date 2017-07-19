@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "Secret",
+    "slug": "secret",
+    "sdkVersion": "18.0.0",
+    "privacy": "public",
+    "version": "0.1.0",
+    "primaryColor": "#FFFFFF",
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#333333"
+    }
+  }
+}
