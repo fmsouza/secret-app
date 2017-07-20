@@ -7,7 +7,6 @@ export const INITIAL_ROUTE = 'home';
 
 export default StackNavigator({
     home: { screen: Views.Home },
-    second: { screen: Views.Second },
 }, {
     initialRouteName: INITIAL_ROUTE
 });

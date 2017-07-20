@@ -1,3 +1,3 @@
-import counter from './counter';
+import passwords from './passwords';
 
-export { counter };
+export { passwords };

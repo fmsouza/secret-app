@@ -1,10 +1,14 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View, Button } from 'react-native';
+import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { inject, observer } from 'mobx-react';
+import Modal from 'react-native-modalbox'; // Reference: https://github.com/maxs15/react-native-modalbox
 import * as Colors from '../../../common/styles/colors';
 import * as Font from '../../../common/styles/font';
 import { Header, Icon, PasswordListItem } from '../../widgets';
 import list from './mock';
 
+@inject('passwords')
+@observer
 export class Home extends React.Component {
 
     static navigationOptions = {
@@ -12,16 +16,30 @@ export class Home extends React.Component {
         headerStyle: { display: 'none' }
     }
 
-    state = { list };
+    onPressAdd() {
+        console.log("Pressed the 'add' button");
+        this.refs.modal.open();
+    }
 
-    onPressRemove() {
-        console.log("Clicked to remove");
+    onPressPassword(item) {
+        console.log("Clicked on", item.title);
+    }
+
+    onPressRemove(item) {
+        console.log("Clicked to remove", item.title);
     }
 
     renderItems() {
-        const { list } = this.state;
-        return (list.length === 0) ? <Text>No items were saved.</Text> : (
-            list.map((item, index) => <PasswordListItem key={index} {...item} onPressRemove={this.onPressRemove} />)
+        const { passwords: { list } } = this.props;
+        return (list.length === 0) ? <Text>No items were saved yet.</Text> : (
+            list.map((item, index) => (
+                <PasswordListItem
+                    {...item}
+                    key={index}
+                    onPress={() => this.onPressPassword(item)}
+                    onPressRemove={() => this.onPressRemove(item)}
+                />
+            ))
         );
     }
 
@@ -31,14 +49,25 @@ export class Home extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Header style={styles.whiteText}>Hello lad!</Header>
-                    <Icon name="settings" color={Colors.WHITE} onPress={() => navigation.navigate('second')} />
+                    <Header style={styles.whiteText}>Secrets</Header>
+                    <Icon name="add" style={styles.headerIcon} color={Colors.WHITE} onPress={() => this.onPressAdd()} />
                 </View>
                 <View style={styles.content}>
                     <ScrollView>
                         {this.renderItems()}
                     </ScrollView>
                 </View>
+
+                <Modal
+                    swipeToClose
+                    ref={"modal"}
+                    position={"center"}
+                    style={styles.modal}
+                    animationDuration={250}
+                >
+                    <Text>Modal centered</Text>
+                    <Button onPress={() => this.refs.modal.close()} title={`Close`} />
+                </Modal>
             </View>
         );
     }
@@ -59,16 +88,24 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: 50,
     },
+    headerIcon: {
+        marginRight: 2
+    },
     content: {
         justifyContent: 'flex-start',
         alignSelf: 'stretch',
         backgroundColor: Colors.INDIGO50,
         borderRadius: 4,
         paddingHorizontal: 5,
-        flex: 9,
-        elevation: 3
+        flex: 9
     },
     whiteText: {
         color: Colors.WHITE
+    },
+    modal: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 200,
+        width: 300
     }
 });
