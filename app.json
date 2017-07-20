@@ -5,9 +5,14 @@
     "sdkVersion": "18.0.0",
     "privacy": "public",
     "version": "0.1.0",
-    "primaryColor": "#FFFFFF",
+    "primaryColor": "#1A237E",
+    "loading": {
+      "backgroundColor": "#3F51B5",
+      "hideExponentText": true
+    },
+    "androidStatusBarColor": "#1A237E",
     "androidStatusBar": {
-      "barStyle": "dark-content",
+      "barStyle": "light-content",
       "backgroundColor": "#1A237E"
     }
   }
