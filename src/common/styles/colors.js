@@ -27,4 +27,6 @@ export const GREY900 = '#212121';
 export const BLACK = '#000000';
 export const WHITE = '#FFFFFF';
 
+export const DANGER = '#D50000';
+
 export const primary = INDIGO500;

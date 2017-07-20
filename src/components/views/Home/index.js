@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import * as Colors from '../../common/styles/colors';
-import * as Font from '../../common/styles/font';
-import { Header, Icon, PasswordListItem } from '../widgets';
+import { ScrollView, StyleSheet, Text, View, Button } from 'react-native';
+import * as Colors from '../../../common/styles/colors';
+import * as Font from '../../../common/styles/font';
+import { Header, Icon, PasswordListItem } from '../../widgets';
+import list from './mock';
 
 export class Home extends React.Component {
 
@@ -11,25 +12,32 @@ export class Home extends React.Component {
         headerStyle: { display: 'none' }
     }
 
-    state = { list: [] };
+    state = { list };
+
+    onPressRemove() {
+        console.log("Clicked to remove");
+    }
 
     renderItems() {
         const { list } = this.state;
         return (list.length === 0) ? <Text>No items were saved.</Text> : (
-            list.map((item, index) => <PasswordListItem key={index} {...item} />)
+            list.map((item, index) => <PasswordListItem key={index} {...item} onPressRemove={this.onPressRemove} />)
         );
     }
 
     render() {
         const { navigation } = this.props;
+        
         return (
             <View style={styles.container}>
                 <View style={styles.header}>
                     <Header style={styles.whiteText}>Hello lad!</Header>
-                    <Icon name="settings" color={Colors.WHITE} />
+                    <Icon name="settings" color={Colors.WHITE} onPress={() => navigation.navigate('second')} />
                 </View>
                 <View style={styles.content}>
-                    {this.renderItems()}
+                    <ScrollView>
+                        {this.renderItems()}
+                    </ScrollView>
                 </View>
             </View>
         );
@@ -52,11 +60,11 @@ const styles = StyleSheet.create({
         height: 50,
     },
     content: {
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignSelf: 'stretch',
         backgroundColor: Colors.INDIGO50,
         borderRadius: 4,
-        padding: 10,
+        paddingHorizontal: 5,
         flex: 9,
         elevation: 3
     },
