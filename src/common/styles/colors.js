@@ -30,3 +30,4 @@ export const WHITE = '#FFFFFF';
 export const DANGER = '#D50000';
 
 export const primary = INDIGO500;
+export const primaryLight = INDIGO50;

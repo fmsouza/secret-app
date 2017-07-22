@@ -1,10 +1,9 @@
 import React from 'react';
 import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import Modal from 'react-native-modalbox'; // Reference: https://github.com/maxs15/react-native-modalbox
 import * as Colors from '../../../common/styles/colors';
 import * as Font from '../../../common/styles/font';
-import { Header, Icon, PasswordListItem } from '../../widgets';
+import { Header, Icon, Modal, PasswordListItem } from '../../widgets';
 import list from './mock';
 
 @inject('passwords')
@@ -58,14 +57,8 @@ export class Home extends React.Component {
                     </ScrollView>
                 </View>
 
-                <Modal
-                    swipeToClose
-                    ref={"modal"}
-                    position={"center"}
-                    style={styles.modal}
-                    animationDuration={250}
-                >
-                    <Text>Modal centered</Text>
+                <Modal ref={"modal"} title="Modal">
+                    <Text>Modal centered bla</Text>
                     <Button onPress={() => this.refs.modal.close()} title={`Close`} />
                 </Modal>
             </View>
@@ -94,18 +87,12 @@ const styles = StyleSheet.create({
     content: {
         justifyContent: 'flex-start',
         alignSelf: 'stretch',
-        backgroundColor: Colors.INDIGO50,
+        backgroundColor: Colors.primaryLight,
         borderRadius: 1,
         paddingHorizontal: 5,
         flex: 9
     },
     whiteText: {
         color: Colors.WHITE
-    },
-    modal: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: 200,
-        width: 300
     }
 });
