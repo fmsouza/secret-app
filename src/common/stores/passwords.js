@@ -4,7 +4,7 @@ class PasswordsStore {
 
     @observable list = [];
 
-    @action newPassword(item) {
+    @action registerNewPassword(item) {
         this.list.push(item);
     }
 

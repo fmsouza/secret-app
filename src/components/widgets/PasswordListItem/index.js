@@ -33,9 +33,9 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ({ title, onPressRemove, ...props }) => (
+export default ({ title, onPress, onPressRemove, ...props }) => (
     <View style={styles.container}>
-        <SwipeRow disableRightSwipe rightOpenValue={-50}>
+        <SwipeRow disableRightSwipe closeOnRowPress rightOpenValue={-50} onRowPress={onPress}>
             <View style={styles.rowBack}>
                 <View />
                 <TouchableHighlight onPress={onPressRemove}>

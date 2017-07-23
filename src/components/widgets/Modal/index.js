@@ -18,18 +18,18 @@ export default class Modal extends React.Component {
     }
 
     render() {
-        const { children, title, ...props } = this.props;
+        const { children, modalStyle, contentStyle, title, ...props } = this.props;
         return (
             <ReactModal
                 swipeToClose
-                ref={"modal"}
-                position={"center"}
-                style={styles.modal}
+                ref="modal"
+                position="center"
+                style={[styles.modal, modalStyle]}
                 animationDuration={250}
                 {...props}
             >
                 {this.renderTitle(title)}
-                <View style={styles.modalBody}>
+                <View style={[styles.modalBody, contentStyle]}>
                     {children}
                 </View>
             </ReactModal>
@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
     },
     modalBody: {
         paddingHorizontal: 10,
-        paddingBottom: 10,
-        height: 170
+        paddingBottom: 10
     }
 });

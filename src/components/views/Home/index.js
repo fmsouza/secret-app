@@ -1,10 +1,11 @@
 import React from 'react';
 import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import * as Action from '../../../common/actions';
 import * as Colors from '../../../common/styles/colors';
 import * as Font from '../../../common/styles/font';
-import { Header, Icon, Modal, PasswordListItem } from '../../widgets';
-import list from './mock';
+import { Header, Icon, PasswordListItem } from '../../widgets';
+import PasswordModal from './newPasswordModal';
 
 @inject('passwords')
 @observer
@@ -15,13 +16,12 @@ export class Home extends React.Component {
         headerStyle: { display: 'none' }
     }
 
-    onPressAdd() {
-        console.log("Pressed the 'add' button");
-        this.refs.modal.open();
+    onSubmit(obj) {
+        Action.createPassword(obj);
     }
 
     onPressPassword(item) {
-        console.log("Clicked on", item.title);
+        console.log("Clicked on", item);
     }
 
     onPressRemove(item) {
@@ -49,18 +49,12 @@ export class Home extends React.Component {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <Header style={styles.whiteText}>Secrets</Header>
-                    <Icon name="add" style={styles.headerIcon} color={Colors.WHITE} onPress={() => this.onPressAdd()} />
+                    <Icon name="add" style={styles.headerIcon} color={Colors.WHITE} onPress={() => this.refs.modal.open()} />
                 </View>
                 <View style={styles.content}>
-                    <ScrollView>
-                        {this.renderItems()}
-                    </ScrollView>
+                    <ScrollView children={this.renderItems()} />
                 </View>
-
-                <Modal ref={"modal"} title="Modal">
-                    <Text>Modal centered bla</Text>
-                    <Button onPress={() => this.refs.modal.close()} title={`Close`} />
-                </Modal>
+                <PasswordModal ref="modal" onSubmit={(data) => this.onSubmit(data)} />
             </View>
         );
     }
