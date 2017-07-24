@@ -1,10 +1,11 @@
 import React from 'react';
-import { BackHandler, Platform, StatusBar } from 'react-native';
+import { BackHandler, Platform, StatusBar, View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { useStrict } from 'mobx';
 import { Provider } from 'mobx-react';
 import * as stores from 'common/stores';
 import Router, { INITIAL_ROUTE } from './Router';
+import AppConfig from './app.json';
 
 useStrict(true);
 
@@ -29,7 +30,10 @@ export default class Application extends React.Component {
     render() {
         return (
             <Provider {...stores}>
-                <Router />
+                <View style={{ flex: 1 }}>
+                    <StatusBar {...AppConfig.expo.androidStatusBar} />
+                    <Router />
+                </View>
             </Provider>
         );
     }
