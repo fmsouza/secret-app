@@ -12,12 +12,7 @@ import PasswordListItem from './PasswordListItem';
 export class Home extends React.Component {
 
     static navigationOptions = {
-        title: 'Home page',
         headerStyle: { display: 'none' }
-    }
-
-    onSubmit(obj) {
-        Action.createPassword(obj);
     }
 
     onPressItem(item) {
@@ -49,7 +44,7 @@ export class Home extends React.Component {
                 <View style={styles.content}>
                     <ScrollView children={this.renderItems()} />
                 </View>
-                <PasswordModal ref="modal" onSubmit={(data) => this.onSubmit(data)} />
+                <PasswordModal ref="modal" onSubmit={(data) => Action.createPassword(data)} />
             </View>
         );
     }
