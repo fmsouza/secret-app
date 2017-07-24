@@ -1,9 +1,26 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { SwipeRow } from 'react-native-swipe-list-view';
-import Icon from '../Icon';
-import * as Color from '../../../common/styles/colors';
-import * as Font from '../../../common/styles/font';
+import { Icon } from 'components/widgets';
+import { Color, Font } from 'common/styles';
+
+export default ({ title, onPress, onPressRemove, ...props }) => (
+    <View style={styles.container}>
+        <SwipeRow disableRightSwipe closeOnRowPress rightOpenValue={-50} onRowPress={onPress}>
+            <View style={styles.rowBack}>
+                <View />
+                <TouchableHighlight onPress={onPressRemove}>
+                    <View>
+                        <Icon name="trash" color={Color.WHITE} />
+                    </View>
+                </TouchableHighlight>
+            </View>
+            <View style={styles.rowFront}>
+                <Text style={styles.title}>{title}</Text>
+            </View>
+        </SwipeRow>
+    </View>
+);
 
 const styles = StyleSheet.create({
     container: {
@@ -32,21 +49,3 @@ const styles = StyleSheet.create({
         height: 50
     }
 });
-
-export default ({ title, onPress, onPressRemove, ...props }) => (
-    <View style={styles.container}>
-        <SwipeRow disableRightSwipe closeOnRowPress rightOpenValue={-50} onRowPress={onPress}>
-            <View style={styles.rowBack}>
-                <View />
-                <TouchableHighlight onPress={onPressRemove}>
-                    <View>
-                        <Icon name="trash" color={Color.WHITE} />
-                    </View>
-                </TouchableHighlight>
-            </View>
-            <View style={styles.rowFront}>
-                <Text style={styles.title}>{title}</Text>
-            </View>
-        </SwipeRow>
-    </View>
-);

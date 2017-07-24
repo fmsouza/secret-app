@@ -1,5 +1,5 @@
-import * as Stores from '../stores';
-import * as Action from './index';
+import * as Stores from 'common/stores';
+import * as Action from 'common/actions';
 
 export const createPassword = ({ title, password }) => Stores.passwords.registerNewPassword({
     title,

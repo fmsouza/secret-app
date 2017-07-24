@@ -1,10 +1,9 @@
 import React from 'react';
 import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import * as Action from '../../../common/actions';
-import * as Colors from '../../../common/styles/colors';
-import * as Font from '../../../common/styles/font';
-import { Header, Icon, PasswordListItem } from '../../widgets';
+import { Header, Icon, PasswordListItem } from 'components/widgets';
+import * as Action from 'common/actions';
+import { Color, Font } from 'common/styles';
 import PasswordModal from './newPasswordModal';
 
 @inject('passwords')
@@ -49,7 +48,7 @@ export class Home extends React.Component {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <Header style={styles.whiteText}>Secrets</Header>
-                    <Icon name="add" style={styles.headerIcon} color={Colors.WHITE} onPress={() => this.refs.modal.open()} />
+                    <Icon name="add" style={styles.headerIcon} color={Color.WHITE} onPress={() => this.refs.modal.open()} />
                 </View>
                 <View style={styles.content}>
                     <ScrollView children={this.renderItems()} />
@@ -63,7 +62,7 @@ export class Home extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.primary,
+        backgroundColor: Color.primary,
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10
@@ -81,12 +80,12 @@ const styles = StyleSheet.create({
     content: {
         justifyContent: 'flex-start',
         alignSelf: 'stretch',
-        backgroundColor: Colors.primaryLight,
+        backgroundColor: Color.primaryLight,
         borderRadius: 1,
         paddingHorizontal: 5,
         flex: 9
     },
     whiteText: {
-        color: Colors.WHITE
+        color: Color.WHITE
     }
 });

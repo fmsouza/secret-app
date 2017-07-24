@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import ReactModal from 'react-native-modalbox'; // Reference: https://github.com/maxs15/react-native-modalbox
-import * as Colors from '../../../common/styles/colors';
+import { Color } from 'common/styles';
 
 export default class Modal extends React.Component {
 
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     modal: {
         height: 200,
         width: 300,
-        backgroundColor: Colors.WHITE,
+        backgroundColor: Color.WHITE,
         borderRadius: 2,
         elevation: 10
     },
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10
     },
     modalHeaderTitle: {
-        color: Colors.GREY500
+        color: Color.GREY500
     },
     modalBody: {
         paddingHorizontal: 10,

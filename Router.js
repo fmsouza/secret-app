@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform, StatusBar } from 'react-native';
 import { StackNavigator } from 'react-navigation'; // Reference: https://github.com/react-community/react-navigation
-import * as Views from './components/views';
+import * as Views from 'components/views';
 
 export const INITIAL_ROUTE = 'home';
 

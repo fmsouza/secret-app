@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
-import * as Font from '../../../common/styles/font';
+import { Font } from 'common/styles';
 
 const styles = StyleSheet.create({
     header: { fontSize: Font.MEDIUM }

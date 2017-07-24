@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
-import { Modal } from '../../widgets';
+import { Modal } from 'components/widgets';
 
 export default class NewPasswordModal extends React.Component {
 

@@ -3,8 +3,8 @@ import { BackHandler, Platform, StatusBar } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { useStrict } from 'mobx';
 import { Provider } from 'mobx-react';
-import * as stores from './src/common/stores';
-import Router, { INITIAL_ROUTE } from './src';
+import * as stores from 'common/stores';
+import Router, { INITIAL_ROUTE } from './Router';
 
 useStrict(true);
 
