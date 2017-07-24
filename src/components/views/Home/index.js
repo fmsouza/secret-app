@@ -1,10 +1,11 @@
 import React from 'react';
-import { Button, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Button, Clipboard, ScrollView, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import { Header, Icon, PasswordListItem } from 'components/widgets';
+import { Header, Icon } from 'components/widgets';
 import * as Action from 'common/actions';
 import { Color, Font } from 'common/styles';
-import PasswordModal from './newPasswordModal';
+import PasswordModal from './PasswordModal';
+import PasswordListItem from './PasswordListItem';
 
 @inject('passwords')
 @observer
@@ -19,12 +20,9 @@ export class Home extends React.Component {
         Action.createPassword(obj);
     }
 
-    onPressPassword(item) {
-        console.log("Clicked on", item);
-    }
-
-    onPressRemove(item) {
-        console.log("Clicked to remove", item.title);
+    onPressItem(item) {
+        const password = Action.decrypt(item.password);
+        Clipboard.setString(password);
     }
 
     renderItems() {
@@ -34,16 +32,14 @@ export class Home extends React.Component {
                 <PasswordListItem
                     {...item}
                     key={index}
-                    onPress={() => this.onPressPassword(item)}
-                    onPressRemove={() => this.onPressRemove(item)}
+                    onPressItem={() => this.onPressItem(item)}
+                    onPressRemove={() => Action.removePassword(item)}
                 />
             ))
         );
     }
 
     render() {
-        const { navigation } = this.props;
-        
         return (
             <View style={styles.container}>
                 <View style={styles.header}>

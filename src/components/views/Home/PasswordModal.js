@@ -26,6 +26,7 @@ export default class NewPasswordModal extends React.Component {
                     onChangeText={(title) => this.setState({ title })}
                     value={this.state.title}
                     placeholder="Title"
+                    autoFocus
                 />
                 <TextInput
                     style={styles.textInput}

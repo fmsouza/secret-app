@@ -5,3 +5,5 @@ export const createPassword = ({ title, password }) => Stores.passwords.register
     title,
     password: Action.encrypt(password)
 });
+
+export const removePassword = (item) => Stores.passwords.removePassword(item);

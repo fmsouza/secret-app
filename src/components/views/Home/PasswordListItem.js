@@ -1,12 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
-import { SwipeRow } from 'react-native-swipe-list-view';
+import { Alert, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { SwipeRow } from 'react-native-swipe-list-view'; // Reference: https://github.com/jemise111/react-native-swipe-list-view
+import * as Action from 'common/actions';
 import { Icon } from 'components/widgets';
 import { Color, Font } from 'common/styles';
 
-export default ({ title, onPress, onPressRemove, ...props }) => (
+export default ({ title, onPressItem, onPressRemove }) => (
     <View style={styles.container}>
-        <SwipeRow disableRightSwipe closeOnRowPress rightOpenValue={-50} onRowPress={onPress}>
+        <SwipeRow disableRightSwipe rightOpenValue={-50} onRowPress={onPressItem}>
             <View style={styles.rowBack}>
                 <View />
                 <TouchableHighlight onPress={onPressRemove}>
