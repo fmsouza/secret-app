@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Clipboard, ScrollView, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import Toast from 'react-native-smart-toast'; // Reference: https://github.com/react-native-component/react-native-smart-toast
 import { Header, Icon } from 'components/widgets';
 import * as Action from 'common/actions';
 import { Color, Font } from 'common/styles';
@@ -18,6 +19,10 @@ export class Home extends React.Component {
     onPressItem(item) {
         const password = Action.decrypt(item.password);
         Clipboard.setString(password);
+        this.refs.toastCtrl.show({
+            position: Toast.constants.gravity.bottom,
+            children: <Text style={styles.whiteText}>{`${item.title} copied to clipboard.`}</Text>
+        });
     }
 
     renderItems() {
@@ -45,6 +50,7 @@ export class Home extends React.Component {
                     <ScrollView children={this.renderItems()} />
                 </View>
                 <PasswordModal ref="modal" onSubmit={(data) => Action.createPassword(data)} />
+                <Toast ref="toastCtrl" textStyle={styles.toastText} />
             </View>
         );
     }
