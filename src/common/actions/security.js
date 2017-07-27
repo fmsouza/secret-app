@@ -8,7 +8,7 @@ const SECRET_KEY = 'udbas87dras9d67atsm0da78nbt20873t20n8723dm230tdn87bqt087dqd0
  * @param {string} message - Content string
  * return {string}
  */
-export const encrypt = (message) => AES.encrypt(message, SECRET_KEY);
+export const encrypt = (message) => AES.encrypt(message, SECRET_KEY).toString();
 
 /**
  * Takes a encrypted string as input to be decrypted.

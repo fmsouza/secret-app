@@ -16,12 +16,16 @@ export class Home extends React.Component {
         headerStyle: { display: 'none' }
     }
 
+    componentWillMount() {
+        Action.loadPasswords();
+    }
+
     onPressItem(item) {
-        const password = Action.decrypt(item.password);
+        const password = Action.getPassword(item);
         Clipboard.setString(password);
         this.refs.toastCtrl.show({
             position: Toast.constants.gravity.bottom,
-            children: <Text style={styles.whiteText}>{`${item.title} copied to clipboard.`}</Text>
+            children: <Text style={styles.whiteText}>{`'${item.title}' copied to clipboard.`}</Text>
         });
     }
 

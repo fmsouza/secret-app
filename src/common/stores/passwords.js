@@ -4,9 +4,13 @@ class PasswordsStore {
 
     @observable list = [];
 
+    @action registerPasswords(items) {
+        this.list = this.list.concat(items);
+        console.log(this.list);
+    }
+
     @action registerNewPassword(item) {
-        const id = (this.list.length > 0) ? this.list[this.list.length-1].id + 1 : 1;
-        this.list.push({ ...item, id });
+        this.list.push(item);
     }
 
     @action removePassword(item) {
